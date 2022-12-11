@@ -22,15 +22,18 @@ class BusAppActivity : AppCompatActivity() {
 
         app = application as MainApp
         i("BusApp activity started...")
+
         binding.btnAdd.setOnClickListener() {
-            busApp.BusOrigin = binding.origin.text.toString()
-            busApp.BusOrigin = binding.desination.text.toString()
-            if (busApp.BusOrigin.isNotEmpty()) {
+            busApp.origin = binding.busAppOrigin.text.toString()
+            busApp.destination = binding.busAppDestination.text.toString()
+            if (busApp.origin.isNotEmpty()) {
                 app.buses.add(busApp.copy())
-                i("add Button Pressed: ${busApp.BusOrigin}")
+                i("add Button Pressed: ${busApp}")
                 for(i in app.buses.indices){
                     i("BusApp[$i]:${this.app.buses[i]}")
                 }
+                setResult(RESULT_OK)
+                finish()
             }
             else {
                 Snackbar

@@ -41,7 +41,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/origin"
+                    android:id="@+id/busAppOrigin"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
@@ -54,7 +54,7 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
                 <EditText
-                    android:id="@+id/desination"
+                    android:id="@+id/busAppDestination"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"

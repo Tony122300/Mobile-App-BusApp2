@@ -11,5 +11,6 @@ class MainApp : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         i("busApp started")
+        buses.add(BusAppModel("Waterford","Wexford"))
     }
 }
