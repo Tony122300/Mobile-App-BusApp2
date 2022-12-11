@@ -1,6 +1,7 @@
 package com.example.busapp2.activities
 
 import BusAppAdapter
+import BusAppListener
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -18,25 +19,26 @@ import com.example.busapp2.databinding.CardBusappBinding
 import com.example.busapp2.main.MainApp
 import com.example.busapp2.models.BusAppModel
 
-class BusAppListActivity : AppCompatActivity() {
+class BusAppListActivity : AppCompatActivity(), BusAppListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityBusappListBinding
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            binding = ActivityBusappListBinding.inflate(layoutInflater)
-            setContentView(binding.root)
-            binding.toolbar.title = title
-            setSupportActionBar(binding.toolbar)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityBusappListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.toolbar.title = title
+        setSupportActionBar(binding.toolbar)
 
-            app = application as MainApp
+        app = application as MainApp
 
-            val layoutManager = LinearLayoutManager(this)
-            binding.recyclerView.layoutManager = layoutManager
-            //binding.recyclerView.adapter = BusAppAdapter(app.buses)
-            binding.recyclerView.adapter = BusAppAdapter(app.buses.findAll())
-        }
+        val layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = layoutManager
+        //binding.recyclerView.adapter = BusAppAdapter(app.buses)
+        binding.recyclerView.adapter = BusAppAdapter(app.buses.findAll(),this)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
@@ -57,10 +59,23 @@ class BusAppListActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.buses.findAll().size)
+                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.buses.findAll().size)
             }
         }
+
+
+    override fun onBusAppClick(buses: BusAppModel) {
+        val launcherIntent = Intent(this, BusAppActivity::class.java)
+        launcherIntent.putExtra("BusApp_edit",buses)
+        getClickResult.launch(launcherIntent)
     }
 
-
+    private val getClickResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.buses.findAll().size)
+            }
+        }
+}

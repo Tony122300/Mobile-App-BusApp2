@@ -17,6 +17,7 @@ class BusAppActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBusappBinding
     var busApp = BusAppModel()
     lateinit var app : MainApp
+    var edit = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,20 +28,29 @@ class BusAppActivity : AppCompatActivity() {
         app = application as MainApp
         i("BusApp activity started...")
 
+        if (intent.hasExtra("busApp_edit")) {
+            edit = true
+            busApp = intent.extras?.getParcelable("busApp_edit")!!
+            binding.busAppOrigin.setText(busApp.origin)
+            binding.busAppDestination.setText(busApp.destination)
+            binding.btnAdd.setText(R.string.save_bus)
+        }
 
         binding.btnAdd.setOnClickListener() {
             busApp.origin = binding.busAppOrigin.text.toString()
             busApp.destination = binding.busAppDestination.text.toString()
             if (busApp.origin.isNotEmpty()) {
-                app.buses.create(busApp.copy())
-                setResult(RESULT_OK)
-                finish()
+                Snackbar.make(it,R.string.enter_Bus_Origin,Snackbar.LENGTH_LONG).show()
             }
             else {
-                Snackbar
-                    .make(it,"Please Enter a Bus Station", Snackbar.LENGTH_LONG)
-                    .show()
+                if(edit){
+                    app.buses.update(busApp.copy())
+                }else{
+                    app.buses.create(busApp.copy())
+                }
             }
+            setResult(RESULT_OK)
+            finish()
         }
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

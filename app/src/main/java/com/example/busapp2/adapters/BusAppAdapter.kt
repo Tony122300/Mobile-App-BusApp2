@@ -4,7 +4,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.busapp2.databinding.CardBusappBinding
 import com.example.busapp2.models.BusAppModel
 
-class BusAppAdapter constructor(private var buses: List<BusAppModel>) :
+
+interface BusAppListener {
+    fun onBusAppClick(buses: BusAppModel)
+}
+
+class BusAppAdapter constructor(private var buses: List<BusAppModel>,private val listener: BusAppListener) :
     RecyclerView.Adapter<BusAppAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -18,7 +23,7 @@ class BusAppAdapter constructor(private var buses: List<BusAppModel>) :
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val busApp = buses[holder.adapterPosition]
-        holder.bind(busApp)
+        holder.bind(busApp, listener)
     }
 
     override fun getItemCount(): Int = buses.size
@@ -27,9 +32,10 @@ class BusAppAdapter constructor(private var buses: List<BusAppModel>) :
     class MainHolder(private val binding: CardBusappBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(busApp: BusAppModel) {
+        fun bind(busApp: BusAppModel, listener: BusAppListener) {
             binding.origin.text = busApp.origin
             binding.destination.text = busApp.destination
+            binding.root.setOnClickListener{listener.onBusAppClick(busApp)}
         }
     }
 
