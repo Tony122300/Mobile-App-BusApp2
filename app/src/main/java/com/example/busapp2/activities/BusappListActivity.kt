@@ -1,5 +1,6 @@
 package com.example.busapp2.activities
 
+import BusAppAdapter
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -59,37 +60,6 @@ class BusAppListActivity : AppCompatActivity() {
                 notifyItemRangeChanged(0,app.buses.size)
             }
         }
-    }
-
-    class BusAppAdapter constructor(private var buses: List<BusAppModel>) :
-        RecyclerView.Adapter<BusAppAdapter.MainHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-            val binding = CardBusappBinding
-                .inflate(LayoutInflater.from(parent.context), parent, false)
-
-            return MainHolder(binding)
-        }
-
-
-
-        override fun onBindViewHolder(holder: MainHolder, position: Int) {
-            val busApp = buses[holder.adapterPosition]
-            holder.bind(busApp)
-        }
-
-        override fun getItemCount(): Int = buses.size
-
-
-        class MainHolder(private val binding: CardBusappBinding) :
-            RecyclerView.ViewHolder(binding.root) {
-
-            fun bind(buses: BusAppModel) {
-                binding.origin.text = buses.origin
-                binding.destination.text = buses.destination
-            }
-        }
-
     }
 
 
