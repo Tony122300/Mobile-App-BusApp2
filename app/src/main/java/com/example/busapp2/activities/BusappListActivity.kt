@@ -34,7 +34,8 @@ class BusAppListActivity : AppCompatActivity() {
 
             val layoutManager = LinearLayoutManager(this)
             binding.recyclerView.layoutManager = layoutManager
-            binding.recyclerView.adapter = BusAppAdapter(app.buses)
+            //binding.recyclerView.adapter = BusAppAdapter(app.buses)
+            binding.recyclerView.adapter = BusAppAdapter(app.buses.findAll())
         }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -57,7 +58,7 @@ class BusAppListActivity : AppCompatActivity() {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.buses.size)
+                notifyItemRangeChanged(0,app.buses.findAll().size)
             }
         }
     }

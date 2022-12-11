@@ -32,11 +32,7 @@ class BusAppActivity : AppCompatActivity() {
             busApp.origin = binding.busAppOrigin.text.toString()
             busApp.destination = binding.busAppDestination.text.toString()
             if (busApp.origin.isNotEmpty()) {
-                app.buses.add(busApp.copy())
-                i("add Button Pressed: ${busApp}")
-                for(i in app.buses.indices){
-                    i("BusApp[$i]:${this.app.buses[i]}")
-                }
+                app.buses.create(busApp.copy())
                 setResult(RESULT_OK)
                 finish()
             }

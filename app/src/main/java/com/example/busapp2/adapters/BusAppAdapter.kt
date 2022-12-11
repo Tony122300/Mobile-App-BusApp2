@@ -27,9 +27,9 @@ class BusAppAdapter constructor(private var buses: List<BusAppModel>) :
     class MainHolder(private val binding: CardBusappBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(buses: BusAppModel) {
-            binding.origin.text = buses.origin
-            binding.destination.text = buses.destination
+        fun bind(busApp: BusAppModel) {
+            binding.origin.text = busApp.origin
+            binding.destination.text = busApp.destination
         }
     }
 
