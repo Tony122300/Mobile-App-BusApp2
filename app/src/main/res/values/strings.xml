@@ -2,9 +2,12 @@
     <string name="app_name">BusApp</string>
     <string name="button_addBus">Add Bus</string>
     <string name="hint_BusOrigin">Bus Station</string>
-    <string name="hint_BusDestination">BusID </string>
+    <string name="hint_BusDestination">Destination </string>
     <string name="menu_addBus">Add</string>
     <string name="menu_cancelAddBus">Cancel</string>
     <string name="enter_Bus_Origin"> Please enter a Origin </string>
     <string name="save_bus"> Save Bus </string>
+    <string name="button_addImage"> Add Image </string>
+    <string name="select_busApp_image">Select Bus Station image</string>
+    <string name="change_BusApp_image">Change Bus Station image</string>
 </resources>

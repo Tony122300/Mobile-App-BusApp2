@@ -6,16 +6,12 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.busapp2.R
 import com.example.busapp2.databinding.ActivityBusappListBinding
-import com.example.busapp2.databinding.CardBusappBinding
 import com.example.busapp2.main.MainApp
 import com.example.busapp2.models.BusAppModel
 

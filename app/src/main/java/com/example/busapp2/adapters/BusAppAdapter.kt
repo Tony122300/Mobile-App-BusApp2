@@ -3,6 +3,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.busapp2.databinding.CardBusappBinding
 import com.example.busapp2.models.BusAppModel
+import com.squareup.picasso.Picasso
 
 
 interface BusAppListener {
@@ -35,6 +36,7 @@ class BusAppAdapter constructor(private var buses: List<BusAppModel>,private val
         fun bind(busApp: BusAppModel, listener: BusAppListener) {
             binding.origin.text = busApp.origin
             binding.destination.text = busApp.destination
+            Picasso.get().load(busApp.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener{listener.onBusAppClick(busApp)}
         }
     }

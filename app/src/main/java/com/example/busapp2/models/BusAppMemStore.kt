@@ -25,6 +25,7 @@ class BusAppMemStore : BusAppStore {
         if (foundBusApp != null) {
             foundBusApp.origin = busApp.origin
             foundBusApp.destination = busApp.destination
+            foundBusApp.image = busApp.image
             logAll()
         }
     }
