@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.BusAppActivity">
+    tools:context="com.example.busapp2.activities.BusAppMapsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 <EditText
                     android:id="@+id/busAppOrigin"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
                     android:hint="@string/hint_BusOrigin"
@@ -92,6 +92,19 @@
                     android:text="@string/button_addImage"
                     android:textColor="#212121"
                     android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/busStationLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@color/colorAccent"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/button_location"
+                    android:textColor="#212121"
+                    android:textSize="16sp"/>
 
                 <ImageView
                     android:id="@+id/busAppImage"

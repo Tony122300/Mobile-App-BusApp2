@@ -16,7 +16,7 @@ import com.example.busapp2.main.MainApp
 import com.example.busapp2.models.BusAppModel
 
 class BusAppListActivity : AppCompatActivity(), BusAppListener {
-
+    private var position: Int = 0
     lateinit var app: MainApp
     private lateinit var binding: ActivityBusappListBinding
 
@@ -46,6 +46,10 @@ class BusAppListActivity : AppCompatActivity(), BusAppListener {
                 val launcherIntent = Intent(this, BusAppActivity::class.java)
                 getResult.launch(launcherIntent)
             }
+            R.id.item_map ->{
+                val launcherIntent = Intent(this, BusAppMapsActivity::class.java)
+                mapIntentLauncher.launch(launcherIntent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -56,13 +60,15 @@ class BusAppListActivity : AppCompatActivity(), BusAppListener {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.buses.findAll().size)
-            }
+            }else
+                binding.recyclerView.adapter = BusAppAdapter(app.buses.findAll(),this)
         }
 
 
-    override fun onBusAppClick(buses: BusAppModel) {
+    override fun onBusAppClick(buses: BusAppModel, pos: Int) {
         val launcherIntent = Intent(this, BusAppActivity::class.java)
         launcherIntent.putExtra("BusApp_edit",buses)
+        position = pos
         getClickResult.launch(launcherIntent)
     }
 
@@ -72,6 +78,14 @@ class BusAppListActivity : AppCompatActivity(), BusAppListener {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.buses.findAll().size)
-            }
+            }else
+                if(it.resultCode == 99)
+                    (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
+
+    private val mapIntentLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        )    { }
+
 }

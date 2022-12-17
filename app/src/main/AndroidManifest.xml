@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+
     <application
         android:name="com.example.busapp2.main.MainApp"
         android:allowBackup="true"
@@ -13,6 +16,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BusApp2"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.BusAppMapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_bus_app_maps"
+            android:theme="@style/Theme.BusApp2.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <activity
+            android:name=".activities.MapActivity"
+            android:exported="false"
+            android:label="@string/title_activity_map" />
         <activity
             android:name=".activities.BusAppListActivity"
             android:exported="true">
@@ -29,12 +50,6 @@
         <activity
             android:name=".activities.BusAppActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

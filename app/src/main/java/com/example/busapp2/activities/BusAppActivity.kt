@@ -14,6 +14,7 @@ import com.example.busapp2.helpers.showImagePicker
 import com.example.busapp2.main.MainApp
 import com.google.android.material.snackbar.Snackbar
 import com.example.busapp2.models.BusAppModel
+import com.example.busapp2.models.Location
 import com.squareup.picasso.Picasso
 import timber.log.Timber
 import timber.log.Timber.i
@@ -22,9 +23,11 @@ import timber.log.Timber.i
 class BusAppActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBusappBinding
     private lateinit var imageIntentLauncher: ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
     var busApp = BusAppModel()
+    var edit = false
+   // var location = Location(52.245696, -7.139102, 15f)
     lateinit var app: MainApp
-    val IMAGE_REQUEST = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +37,8 @@ class BusAppActivity : AppCompatActivity() {
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
 
-        i("BusApp started...")
         app = application as MainApp
+        i("BusApp started...")
 
         if (intent.hasExtra("busApp_edit")) {
             edit = true
@@ -67,22 +70,40 @@ class BusAppActivity : AppCompatActivity() {
             setResult(RESULT_OK)
             finish()
         }
+
         binding.chooseImage.setOnClickListener {
-            showImagePicker(imageIntentLauncher)
+            showImagePicker(imageIntentLauncher,this)
+        }
+
+        binding.busStationLocation.setOnClickListener {
+            val location = Location(52.245696, -7.139102, 15f)
+            if (busApp.zoom != 0f) {
+                location.lat =  busApp.lat
+                location.lng = busApp.lng
+                location.zoom = busApp.zoom
+            }
+            val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
+            mapIntentLauncher.launch(launcherIntent)
         }
         registerImagePickerCallback()
+        registerMapCallback()
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_busapp, menu)
+        if(edit) menu.getItem(0).isVisible = true
         return super.onCreateOptionsMenu(menu)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_cancel -> {
+            R.id.item_delete -> {
+                setResult(99)
+                app.buses.delete(busApp)
                 finish()
             }
+            R.id.item_cancel -> {  finish()  }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -90,20 +111,45 @@ class BusAppActivity : AppCompatActivity() {
         imageIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             { result ->
-                when (result.resultCode) {
+                when(result.resultCode){
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
-                            busApp.image = result.data!!.data!!
+
+                            val image = result.data!!.data!!
+                            contentResolver.takePersistableUriPermission(image,
+                                Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            busApp.image = image
+
                             Picasso.get()
                                 .load(busApp.image)
                                 .into(binding.busAppImage)
                             binding.chooseImage.setText(R.string.change_BusApp_image)
                         } // end of if
                     }
-                    RESULT_CANCELED -> {}
-                    else -> {}
+                    RESULT_CANCELED -> { } else -> { }
                 }
             }
     }
+
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when (result.resultCode) {
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Location ${result.data.toString()}")
+                            val location = result.data!!.extras?.getParcelable<Location>("location")!!
+                            i("Location == $location")
+                            busApp.lat = location.lat
+                            busApp.lng = location.lng
+                            busApp.zoom = location.zoom
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
+
 }

@@ -26,11 +26,18 @@ class BusAppMemStore : BusAppStore {
             foundBusApp.origin = busApp.origin
             foundBusApp.destination = busApp.destination
             foundBusApp.image = busApp.image
+            foundBusApp.lat = busApp.lat
+            foundBusApp.lng = busApp.lng
+            foundBusApp.zoom = busApp.zoom
             logAll()
         }
     }
 
   private fun logAll(){
         buses.forEach{i("${it}")}
+    }
+
+    override fun delete(busApp: BusAppModel) {
+        buses.remove(busApp)
     }
 }

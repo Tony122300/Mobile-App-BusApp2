@@ -7,7 +7,9 @@ import com.squareup.picasso.Picasso
 
 
 interface BusAppListener {
-    fun onBusAppClick(buses: BusAppModel)
+    fun onBusAppClick(buses: BusAppModel, position: Int){
+
+    }
 }
 
 class BusAppAdapter constructor(private var buses: List<BusAppModel>,private val listener: BusAppListener) :
@@ -37,7 +39,7 @@ class BusAppAdapter constructor(private var buses: List<BusAppModel>,private val
             binding.origin.text = busApp.origin
             binding.destination.text = busApp.destination
             Picasso.get().load(busApp.image).resize(200,200).into(binding.imageIcon)
-            binding.root.setOnClickListener{listener.onBusAppClick(busApp)}
+            binding.root.setOnClickListener{listener.onBusAppClick(busApp,adapterPosition)}
         }
     }
 
