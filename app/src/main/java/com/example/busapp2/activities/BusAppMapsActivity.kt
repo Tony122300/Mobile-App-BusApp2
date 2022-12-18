@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.busapp2.databinding.ActivityBusAppMapsBinding
 import com.example.busapp2.databinding.ContentBusAppMapsBinding
 import com.example.busapp2.main.MainApp
+import com.example.busapp2.models.BusAppModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.squareup.picasso.Picasso
 
 class BusAppMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener  {
 
@@ -20,28 +22,16 @@ class BusAppMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener  
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        app = application as MainApp
         binding = ActivityBusAppMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
         contentBinding = ContentBusAppMapsBinding.bind(binding.root)
         contentBinding.mapView.onCreate(savedInstanceState)
-        app = application as MainApp
         contentBinding.mapView.getMapAsync {
             map = it
             configureMap()
-        }
-    }
-
-
-    private fun configureMap() {
-        map.uiSettings.isZoomControlsEnabled = true
-        app.buses.findAll().forEach {
-            val loc = LatLng(it.lat, it.lng)
-            val options = MarkerOptions().title(it.origin).position(loc)
-            map.addMarker(options)?.tag = it.busid
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
-            map.setOnMarkerClickListener(this)
         }
     }
 
@@ -70,12 +60,25 @@ class BusAppMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener  
         contentBinding.mapView.onSaveInstanceState(outState)
     }
 
+    private fun configureMap() {
+        map.uiSettings.isZoomControlsEnabled = true
+        app.buses.findAll().forEach {
+            val loc = LatLng(it.lat, it.lng)
+            val options = MarkerOptions().title(it.origin).position(loc)
+            map.addMarker(options)?.tag = it.busid
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
+            map.setOnMarkerClickListener(this)
+        }
+    }
+
     override fun onMarkerClick(marker: Marker): Boolean {
-        contentBinding.currentOrigin.text = marker.title
-        contentBinding.currentDescription.text = marker.title
-        contentBinding.route.text = marker.title
-        contentBinding.departureTime.text = marker.title
-        contentBinding.arrivalTime.text = marker.title
+        val foundBusApp: BusAppModel? = app.buses.findAll().find { p -> p.busid == marker.tag }
+        contentBinding.currentOrigin.text = foundBusApp?.origin
+        contentBinding.currentDescription.text = foundBusApp?.destination
+        contentBinding.route.text = foundBusApp?.route
+        contentBinding.departureTime.text = foundBusApp?.departureTime
+        contentBinding.arrivalTime.text = foundBusApp?.arrivalTime
+        Picasso.get().load(foundBusApp?.image).into(contentBinding.imageView2)
         return false
     }
 

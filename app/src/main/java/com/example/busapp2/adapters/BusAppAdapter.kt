@@ -14,7 +14,8 @@ interface BusAppListener {
     }
 }
 
-class BusAppAdapter constructor(private var buses: List<BusAppModel>,private val listener: BusAppListener) :
+class BusAppAdapter constructor(private var buses: List<BusAppModel>,
+                                private val listener: BusAppListener) :
     RecyclerView.Adapter<BusAppAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {

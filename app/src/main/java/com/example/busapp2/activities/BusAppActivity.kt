@@ -68,7 +68,8 @@ class BusAppActivity : AppCompatActivity() {
             busApp.route = binding.busRoute.text.toString()
             busApp.departureTime = binding.departureTime.text.toString()
             busApp.arrivalTime = binding.arrivalTime.text.toString()
-            if (busApp.origin.isEmpty()) {
+            if (busApp.origin.isEmpty() || busApp.destination.isEmpty() || busApp.route.isEmpty() || busApp.departureTime.isEmpty() || busApp.arrivalTime.isEmpty()
+                    ) {
                 Snackbar.make(it, R.string.enter_Bus_Origin, Snackbar.LENGTH_LONG).show()
             } else {
                 if (edit) {
@@ -77,7 +78,6 @@ class BusAppActivity : AppCompatActivity() {
                     app.buses.create(busApp.copy())
                 }
             }
-            i("add Button Pressed: $busApp")
             setResult(RESULT_OK)
             finish()
         }

@@ -3,14 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/busAppActivity2">
+    app:startDestination="@id/busAppListActivity">
     <activity
-        android:id="@+id/busAppActivity2"
-        android:name="com.example.busapp2.activities.BusAppActivity"
-        android:label="BusAppActivity" />
-    <activity
-        android:id="@+id/busAppListActivity2"
+        android:id="@+id/busAppListActivity"
         android:name="com.example.busapp2.activities.BusAppListActivity"
         android:label="activity_busapp_list"
         tools:layout="@layout/activity_busapp_list" />
+    <activity
+        android:id="@+id/busAppMapsActivity"
+        android:name="com.example.busapp2.activities.BusAppMapsActivity"
+        android:label="activity_bus_app_maps"
+        tools:layout="@layout/activity_bus_app_maps" />
+    <activity
+        android:id="@+id/busAppActivity2"
+        android:name="com.example.busapp2.activities.BusAppActivity"
+        android:label="activity_busapp"
+        tools:layout="@layout/activity_busapp" />
 </navigation>
