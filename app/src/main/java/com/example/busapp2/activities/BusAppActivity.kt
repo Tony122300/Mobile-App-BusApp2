@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.findNavController
@@ -79,6 +80,7 @@ class BusAppActivity : AppCompatActivity() {
             busApp.route = binding.busRoute.text.toString()
             busApp.departureTime = binding.departureTime.text.toString()
             busApp.arrivalTime = binding.arrivalTime.text.toString()
+            Toast.makeText(applicationContext,"Bus Station Added", Toast.LENGTH_SHORT).show()
             if (busApp.origin.isEmpty() || busApp.destination.isEmpty() || busApp.route.isEmpty() || busApp.departureTime.isEmpty() || busApp.arrivalTime.isEmpty()
                     ) {
                 Snackbar.make(it, R.string.enter_Bus_Origin, Snackbar.LENGTH_LONG).show()
@@ -94,7 +96,9 @@ class BusAppActivity : AppCompatActivity() {
         }
 
         binding.chooseImage.setOnClickListener {
+            Toast.makeText(applicationContext,"Image added", Toast.LENGTH_SHORT).show()
             showImagePicker(imageIntentLauncher,this)
+
         }
 
         binding.busStationLocation.setOnClickListener {

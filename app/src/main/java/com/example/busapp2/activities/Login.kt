@@ -106,6 +106,7 @@ class Login : AppCompatActivity(), View.OnClickListener {
     private fun continueApp() {
         val intent = Intent()
         intent.setClass(this,BusAppListActivity::class.java)
+        Toast.makeText(applicationContext,"Continuing to main app", Toast.LENGTH_SHORT).show()
         startActivity(intent)
         finish()
     }
