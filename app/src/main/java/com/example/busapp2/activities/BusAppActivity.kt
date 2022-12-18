@@ -22,16 +22,16 @@ import timber.log.Timber.i
 
 class BusAppActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBusappBinding
+    var busApp = BusAppModel()
     private lateinit var imageIntentLauncher: ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
-    var busApp = BusAppModel()
-    var edit = false
    // var location = Location(52.245696, -7.139102, 15f)
     lateinit var app: MainApp
+    var edit = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var edit = false
+        edit = false
         binding = ActivityBusappBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.toolbarAdd.title = title
@@ -45,6 +45,10 @@ class BusAppActivity : AppCompatActivity() {
             busApp = intent.extras?.getParcelable("busApp_edit")!!
             binding.busAppOrigin.setText(busApp.origin)
             binding.busAppDestination.setText(busApp.destination)
+            binding.busRoute.setText(busApp.route)
+            binding.departureTime.setText(busApp.departureTime)
+            binding.arrivalTime.setText(busApp.arrivalTime)
+            binding.busRoute.setText(busApp.route)
             binding.btnAdd.setText(R.string.save_bus)
             Picasso.get()
                 .load(busApp.image)
@@ -54,9 +58,16 @@ class BusAppActivity : AppCompatActivity() {
             }
         }
 
+        binding.busStationLocation.setOnClickListener {
+            i ("Set Location Pressed")
+        }
+
         binding.btnAdd.setOnClickListener() {
             busApp.origin = binding.busAppOrigin.text.toString()
             busApp.destination = binding.busAppDestination.text.toString()
+            busApp.route = binding.busRoute.text.toString()
+            busApp.departureTime = binding.departureTime.text.toString()
+            busApp.arrivalTime = binding.arrivalTime.text.toString()
             if (busApp.origin.isEmpty()) {
                 Snackbar.make(it, R.string.enter_Bus_Origin, Snackbar.LENGTH_LONG).show()
             } else {

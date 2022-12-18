@@ -1,3 +1,5 @@
+package com.example.busapp2.adapters
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +40,9 @@ class BusAppAdapter constructor(private var buses: List<BusAppModel>,private val
         fun bind(busApp: BusAppModel, listener: BusAppListener) {
             binding.origin.text = busApp.origin
             binding.destination.text = busApp.destination
+            binding.route.text = busApp.route
+            binding.departureTime.text = busApp.departureTime
+            binding.arrivalTime.text = busApp.arrivalTime
             Picasso.get().load(busApp.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener{listener.onBusAppClick(busApp,adapterPosition)}
         }

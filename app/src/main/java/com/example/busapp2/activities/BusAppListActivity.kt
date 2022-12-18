@@ -1,7 +1,7 @@
 package com.example.busapp2.activities
 
-import BusAppAdapter
-import BusAppListener
+import com.example.busapp2.adapters.BusAppAdapter
+import com.example.busapp2.adapters.BusAppListener
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -31,7 +31,7 @@ class BusAppListActivity : AppCompatActivity(), BusAppListener {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        //binding.recyclerView.adapter = BusAppAdapter(app.buses)
+        //binding.recyclerView.adapter = com.example.busapp2.adapters.BusAppAdapter(app.buses)
         binding.recyclerView.adapter = BusAppAdapter(app.buses.findAll(),this)
     }
 
@@ -59,9 +59,9 @@ class BusAppListActivity : AppCompatActivity(), BusAppListener {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.buses.findAll().size)
-            }else
-                binding.recyclerView.adapter = BusAppAdapter(app.buses.findAll(),this)
+                (binding.recyclerView.adapter)?.
+                notifyItemRangeChanged(0, app.buses.findAll().size)
+            }
         }
 
 
@@ -77,7 +77,8 @@ class BusAppListActivity : AppCompatActivity(), BusAppListener {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.buses.findAll().size)
+                (binding.recyclerView.adapter)?.
+                notifyItemRangeChanged(0, app.buses.findAll().size)
             }else
                 if(it.resultCode == 99)
                     (binding.recyclerView.adapter)?.notifyItemRemoved(position)

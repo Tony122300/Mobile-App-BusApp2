@@ -2,11 +2,10 @@ package com.example.busapp2.activities
 
 import android.app.Activity
 import android.content.Intent
-import android.location.Location
+//import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.busapp2.R
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -17,7 +16,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.example.busapp2.databinding.ActivityMapBinding
 import com.google.android.gms.maps.model.Marker
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
+class MapActivity : AppCompatActivity(), OnMapReadyCallback,
+    GoogleMap.OnMarkerDragListener,
+    GoogleMap.OnMarkerClickListener {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapBinding
@@ -45,12 +46,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarker
         map.addMarker(options)
         map.setOnMarkerDragListener(this)
         map.setOnMarkerClickListener(this)
+        map.uiSettings.isZoomControlsEnabled = true
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
     }
 
 
     override fun onMarkerDrag(p0: Marker) {
-        TODO("Not yet implemented")
     }
 
     override fun onMarkerDragEnd(marker: Marker) {
@@ -60,7 +61,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarker
     }
 
     override fun onMarkerDragStart(p0: Marker) {
-        TODO("Not yet implemented")
     }
 
     override fun onBackPressed() {

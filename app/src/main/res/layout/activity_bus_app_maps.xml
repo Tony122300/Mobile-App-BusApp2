@@ -6,7 +6,8 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.BusAppMapsActivity">
+    tools:context=".activities.BusAppMapsActivity"
+    android:background="@drawable/background">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout2"
@@ -15,7 +16,6 @@
         android:background="@color/colorAccent"
         android:fitsSystemWindows="true"
         app:elevation="0dip"
-        app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -37,4 +37,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

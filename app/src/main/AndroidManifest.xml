@@ -48,8 +48,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.BusAppActivity"
-            android:exported="true">
+            android:name=".activities.BusAppActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

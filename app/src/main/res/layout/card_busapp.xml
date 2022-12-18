@@ -8,7 +8,7 @@
     android:layout_marginBottom="8dp"
     android:elevation="24dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,10 +16,9 @@
 
         <ImageView
             android:id="@+id/imageIcon"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="82dp"
+            android:layout_height="150dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
             android:contentDescription="@string/change_BusApp_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -31,15 +30,66 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
             android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@+id/imageIcon"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Origin" />
 
         <TextView
             android:id="@+id/destination"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/origin"
+            android:layout_width="118dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="18dp"
+            android:textAlignment="viewStart"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageIcon"
+            app:layout_constraintTop_toBottomOf="@+id/origin"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="Destination" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/route"
+            android:layout_width="81dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:textAlignment="viewStart"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Route" />
+
+        <TextView
+            android:id="@+id/departureTime"
+            android:layout_width="118dp"
+            android:layout_height="43dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="99dp"
+            android:layout_marginTop="18dp"
+            android:textAlignment="viewStart"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/destination"
+            tools:text="Departure Time" />
+
+        <TextView
+            android:id="@+id/arrivalTime"
+            android:layout_width="118dp"
+            android:layout_height="41dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="125dp"
+            android:textAlignment="viewStart"
+            android:textSize="25sp"
+            app:layout_constraintStart_toEndOf="@+id/departureTime"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Arrival Time" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

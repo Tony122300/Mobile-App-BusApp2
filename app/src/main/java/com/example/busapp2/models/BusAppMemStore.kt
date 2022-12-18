@@ -25,6 +25,9 @@ class BusAppMemStore : BusAppStore {
         if (foundBusApp != null) {
             foundBusApp.origin = busApp.origin
             foundBusApp.destination = busApp.destination
+            foundBusApp.route = busApp.route
+            foundBusApp.departureTime = busApp.departureTime
+            foundBusApp.arrivalTime = busApp.arrivalTime
             foundBusApp.image = busApp.image
             foundBusApp.lat = busApp.lat
             foundBusApp.lng = busApp.lng

@@ -3,6 +3,9 @@
     <string name="button_addBus">Add Bus</string>
     <string name="hint_BusOrigin">Bus Station</string>
     <string name="hint_BusDestination">Destination </string>
+    <string name="hint_BusRoute">Route </string>
+    <string name="hint_BusDepartureTime">Departure Time </string>
+    <string name="hint_BusArrivalTime">Arrival Time </string>
     <string name="menu_addBus">Add</string>
     <string name="menu_cancelAddBus">Cancel</string>
     <string name="enter_Bus_Origin"> Please enter a Origin </string>
