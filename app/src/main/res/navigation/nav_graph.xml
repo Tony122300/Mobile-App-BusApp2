@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/busAppListActivity">
-    <activity
-        android:id="@+id/busAppListActivity"
-        android:name="com.example.busapp2.activities.BusAppListActivity"
-        android:label="activity_busapp_list"
-        tools:layout="@layout/activity_busapp_list" />
-    <activity
-        android:id="@+id/busAppMapsActivity"
-        android:name="com.example.busapp2.activities.BusAppMapsActivity"
-        android:label="activity_bus_app_maps"
-        tools:layout="@layout/activity_bus_app_maps" />
-    <activity
-        android:id="@+id/busAppActivity2"
-        android:name="com.example.busapp2.activities.BusAppActivity"
-        android:label="activity_busapp"
-        tools:layout="@layout/activity_busapp" />
+    android:id="@+id/nav_graph">
+<!--    app:startDestination="@id/busAppListActivity">-->
+<!--    <activity-->
+<!--        android:id="@+id/busAppListActivity"-->
+<!--        android:name="com.example.busapp2.activities.BusAppListActivity"-->
+<!--        android:label="activity_busapp_list"-->
+<!--        tools:layout="@layout/activity_busapp_list" />-->
+<!--    <activity-->
+<!--        android:id="@+id/busAppMapsActivity"-->
+<!--        android:name="com.example.busapp2.activities.BusAppMapsActivity"-->
+<!--        android:label="activity_bus_app_maps"-->
+<!--        tools:layout="@layout/activity_bus_app_maps" />-->
+<!--    <activity-->
+<!--        android:id="@+id/busAppActivity2"-->
+<!--        android:name="com.example.busapp2.activities.BusAppActivity"-->
+<!--        android:label="activity_busapp"-->
+<!--        tools:layout="@layout/activity_busapp" />-->
 </navigation>

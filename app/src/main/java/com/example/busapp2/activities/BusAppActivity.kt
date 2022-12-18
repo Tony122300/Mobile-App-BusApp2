@@ -8,6 +8,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.busapp2.R
 import com.example.busapp2.databinding.ActivityBusappBinding
 import com.example.busapp2.helpers.showImagePicker
@@ -15,6 +17,7 @@ import com.example.busapp2.main.MainApp
 import com.google.android.material.snackbar.Snackbar
 import com.example.busapp2.models.BusAppModel
 import com.example.busapp2.models.Location
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import timber.log.Timber
 import timber.log.Timber.i
@@ -36,6 +39,14 @@ class BusAppActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
+
+//        //Initialize the bottom navigation view
+//        //create bottom navigation view object
+//        val bottomNavigationView = findViewById<BottomNavigationView
+//                >(R.id.bottom_navigatin_view)
+//        val navController = findNavController(R.id.nav_fragment)
+//        bottomNavigationView.setupWithNavController(navController
+//        )
 
         app = application as MainApp
         i("BusApp started...")

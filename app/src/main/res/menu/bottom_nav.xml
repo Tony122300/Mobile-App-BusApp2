@@ -3,10 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 <!--    <item-->
-<!--        android:id="@+id/busAppActivity2"-->
+<!--        android:id="@+id/home"-->
 <!--        android:title="Home"-->
 <!--        android:icon="@drawable/home"/>-->
-<!--    <item android:title="All Bus Station locations"-->
-<!--        android:icon="@drawable/home"/>-->
+
+<!--    <item-->
+<!--        android:id="@+id/busAppMapsActivity"-->
+<!--        android:title="All Bus Station locations"-->
+<!--        android:icon="@drawable/locations"/>-->
 
 </menu>
