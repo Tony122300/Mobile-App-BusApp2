@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
 
     <application
-        android:name="com.example.busapp2.main.MainApp"
+        android:name=".main.MainApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,7 +16,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BusApp2"
         tools:targetApi="31">
-        <activity android:name="com.example.busapp2.activities.Login"
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.busapp2.activities.BusAppMapsActivity"
+            android:name=".activities.BusAppMapsActivity"
             android:exported="false"
             android:label="@string/title_activity_bus_app_maps"
             android:theme="@style/Theme.BusApp2.NoActionBar">
@@ -39,19 +53,17 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name="com.example.busapp2.activities.MapActivity"
+            android:name=".activities.MapActivity"
             android:exported="false"
             android:label="@string/title_activity_map" />
         <activity
-            android:name="com.example.busapp2.activities.BusAppListActivity"
+            android:name=".activities.BusAppListActivity"
             android:exported="true">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name="com.example.busapp2.activities.BusAppActivity">
+        <activity android:name=".activities.BusAppActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
